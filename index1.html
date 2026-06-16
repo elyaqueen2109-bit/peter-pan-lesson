@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Peter Pan | Full Lesson | Spotlight 7</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(145deg, #0b0f1c 0%, #12172e 100%);
+            font-family: 'Segoe UI', 'Poppins', 'Inter', system-ui, sans-serif;
+            padding: 1rem;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(18, 25, 45, 0.85);
+            backdrop-filter: blur(5px);
+            border-radius: 48px;
+            padding: 1.5rem;
+            box-shadow: 0 25px 45px rgba(0,0,0,0.4), 0 0 0 1px rgba(66,220,255,0.2);
+            border: 1px solid rgba(66,220,255,0.3);
+        }
+        h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #FFD966, #FF8C42, #6EE7FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        .badge {
+            background: #1e2a47;
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 60px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #9fd3ff;
+            margin-left: 0.8rem;
+            vertical-align: middle;
+        }
+        .tabs {
+            display: flex;
+            gap: 0.4rem;
+            margin: 1.5rem 0 1rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #243153;
+            padding-bottom: 0.5rem;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.4rem 0.9rem;
+            border-radius: 40px;
+            cursor: pointer;
+            color: #a2b9e2;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        .tab-btn.active {
+            background: #3bc9ff20;
+            color: #6EE7FF;
+            border-bottom: 2px solid #3bc9ff;
+            margin-bottom: -2px;
+        }
+        .tab-content { display: none; animation: fade 0.2s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fade { from { opacity: 0; transform: translateY(5px);} to { opacity: 1; transform: translateY(0);} }
+        .illustration {
+            margin: 0 0 1.5rem;
+            border-radius: 28px;
+            overflow: hidden;
+            background: #071126;
+            text-align: center;
+        }
+        .illustration img { width: 100%; height: auto; display: block; }
+        .placeholder { padding: 2rem; color: #7f95c0; }
+        .text-box {
+            background: #0c1122cc;
+            padding: 1.2rem;
+            border-radius: 28px;
+            margin: 1rem 0;
+            border-left: 6px solid #3bc9ff;
+            line-height: 1.6;
+            color: #eef4ff;
+            font-size: 1rem;
+        }
+        .audio-controls { display: flex; gap: 0.8rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .speak-btn {
+            background: #3bc9ff;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #0b0f1c;
+            font-size: 0.9rem;
+        }
+        .section-title { font-size: 1.3rem; font-weight: 700; margin: 1rem 0 0.8rem; color: #eef4ff; }
+        .task-card {
+            background: #0f162ee0;
+            border-radius: 28px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            border: 1px solid #243153;
+        }
+        .warmup-area {
+            background: #01061470;
+            border-radius: 28px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .current-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #FFD966;
+            background: #0a1022;
+            padding: 0.8rem;
+            border-radius: 28px;
+            margin-bottom: 1rem;
+        }
+        .next-btn, .reset-btn, .check-btn {
+            background: #3bc9ff;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0.2rem;
+        }
+        .vocab-grid { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; }
+        .vocab-card {
+            background: #1e2a47;
+            padding: 0.5rem 1rem;
+            border-radius: 28px;
+            font-size: 0.9rem;
+            color: #eef4ff;
+        }
+        .vocab-card strong { color: #FFD966; }
+        .tf-item, .gram-item {
+            background: #01061470;
+            padding: 0.7rem;
+            border-radius: 20px;
+            margin-bottom: 0.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .tf-text, .gram-text { flex: 1; color: #e2ecff; font-size: 0.9rem; }
+        .tf-buttons { display: flex; gap: 8px; }
+        .tf-btn {
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            background: #283456;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+        .selected-true { background: #2c6e2c; }
+        .selected-false { background: #9e3c2c; }
+        .feedback, .gram-feedback { font-size: 0.75rem; margin-left: auto; }
+        .gram-input {
+            background: #010c1e;
+            border: 1px solid #2d4570;
+            border-radius: 20px;
+            padding: 0.3rem 0.6rem;
+            color: white;
+            width: 130px;
+        }
+        .answer-input {
+            width: 100%;
+            background: #010c1e;
+            border: 1px solid #2d4570;
+            border-radius: 20px;
+            padding: 0.6rem;
+            color: white;
+            margin-top: 0.3rem;
+        }
+        .speaking-text { color: #e2ecff; }
+        .loading-indicator {
+            text-align: center;
+            padding: 2rem;
+            color: #FFD966;
+            font-style: italic;
+        }
+        footer { margin-top: 1.5rem; text-align: center; font-size: 0.7rem; color: #5d7bb3; }
+        @media (max-width: 700px) {
+            .container { padding: 1rem; }
+            .tf-item, .gram-item { flex-direction: column; align-items: flex-start; }
+            .feedback { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
+        <h1>✨ Peter Pan ✨</h1>
+        <div class="badge">Spotlight 7 | Pre-Intermediate</div>
+    </div>
+
+    <div class="tabs" id="tab-bar">
+        <button class="tab-btn active" data-tab="tabWarmup">🎨 Warm-up</button>
+        <button class="tab-btn" data-tab="tabVocabulary">📚 Vocabulary</button>
+        <button class="tab-btn" data-tab="tabReading">📖 Reading + Audio</button>
+        <button class="tab-btn" data-tab="TabTF">✅ True/False</button>
+        <button class="tab-btn" data-tab="TabComp">💬 Comprehension</button>
+        <button class="tab-btn" data-tab="TabGrammar">📚 Grammar</button>
+        <button class="tab-btn" data-tab="TabSpeaking">🗣️ Speaking</button>
+        <button class="tab-btn" data-tab="TabHomework">🏠 Homework</button>
+    </div>
+
+    <!-- WARM-UP -->
+    <div id="tabWarmup" class="tab-content active">
+        <div class="illustration">
+            <img src="peter_pan_nursery.jpg" alt="Nursery" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=placeholder>🎨 Save peter_pan_nursery.jpg</div>'">
+        </div>
+        <div class="task-card">
+            <div class="section-title">🗣️ Talk about the picture</div>
+            <div class="warmup-area">
+                <div class="current-question" id="warmupQuestion">Click "Next question"</div>
+                <button class="next-btn" id="nextWarmupBtn">➡️ Next question</button>
+                <div id="warmupCounter" style="margin:0.5rem;">Question 0 of 6</div>
+                <button class="reset-btn" id="restartWarmup">⟳ Start over</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VOCABULARY -->
+    <div id="tabVocabulary" class="tab-content">
+        <div class="task-card">
+            <div class="section-title">📖 Key words from the story</div>
+            <div class="vocab-grid">
+                <div class="vocab-card"><strong>pluck</strong> – сорвать</div>
+                <div class="vocab-card"><strong>remain</strong> – оставаться</div>
+                <div class="vocab-card"><strong>airy</strong> – просторный, свежий</div>
+                <div class="vocab-card"><strong>fire-guard</strong> – решётка камина</div>
+                <div class="vocab-card"><strong>kennel</strong> – будка</div>
+                <div class="vocab-card"><strong>nursery-rhyme pictures</strong> – картинки для детских стихов</div>
+                <div class="vocab-card"><strong>mischievous smile</strong> – озорная улыбка</div>
+                <div class="vocab-card"><strong>shadow</strong> – тень</div>
+                <div class="vocab-card"><strong>drawer</strong> – ящик (комода)</div>
+                <div class="vocab-card"><strong>Neverland</strong> – Нетландия</div>
+            </div>
+            <p style="margin-top:1rem; color:#a2b9e2;">✨ Read and memorize. These words appear in the text.</p>
+        </div>
+    </div>
+
+    <!-- READING + AUDIO (with async loading) -->
+    <div id="tabReading" class="tab-content">
+        <div class="illustration">
+            <img src="peter_pan_nursery.jpg" alt="Nursery" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=placeholder>🎨 peter_pan_nursery.jpg</div>'">
+        </div>
+        <div class="task-card">
+            <div class="section-title">🔊 Listen & read</div>
+            <div class="audio-controls">
+                <button class="speak-btn" id="playFullAudio">▶ Play full text</button>
+                <button class="speak-btn" id="stopAudioBtn">⏹️ Stop</button>
+            </div>
+            <div id="readingTextContainer">
+                <!-- Initially show loading, will be replaced with actual text after async wrap -->
+                <div class="loading-indicator">📖 Loading text, please wait...</div>
+            </div>
+            <p style="font-size:0.75rem; color:#a2b9e2;">✨ Audio reads the whole story. Use Vocabulary tab for translations.</p>
+        </div>
+    </div>
+
+    <!-- TRUE/FALSE -->
+    <div id="TabTF" class="tab-content">
+        <div class="task-card">
+            <div id="tfContainer"></div>
+            <button class="reset-btn" id="resetTF">⟳ Reset</button>
+        </div>
+    </div>
+
+    <!-- COMPREHENSION -->
+    <div id="TabComp" class="tab-content">
+        <div class="task-card">
+            <div id="compContainer"></div>
+            <p style="font-size:0.75rem;">✍️ Write answers, then discuss.</p>
+        </div>
+    </div>
+
+    <!-- GRAMMAR -->
+    <div id="TabGrammar" class="tab-content">
+        <div class="task-card">
+            <div id="gramContainer"></div>
+            <button class="check-btn" id="checkGrammarBtn">Check answers</button>
+            <div id="gramGlobalFeedback" style="margin-top:0.8rem;"></div>
+        </div>
+    </div>
+
+    <!-- SPEAKING -->
+    <div id="TabSpeaking" class="tab-content">
+        <div class="task-card">
+            <div class="section-title">🗣️ Retell</div>
+            <div class="speaking-text">
+                <ul style="margin-left:1.2rem; color:#caddff;">
+                    <li>Wendy and family – Nana – the nursery</li>
+                    <li>Peter appears – leaves his shadow</li>
+                    <li>Children disappear – letter</li>
+                </ul>
+            </div>
+            <div class="section-title">💬 Discuss</div>
+            <div class="speaking-text">
+                <p>1. Would you like to go to Neverland? Why?</p>
+                <p>2. What would you take with you?</p>
+                <p>3. Is Peter Pan good or mischievous?</p>
+            </div>
+            <div class="section-title">🎭 Role-play</div>
+            <div class="speaking-text">
+                <p>Interview Peter Pan: ask 3 questions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOMEWORK -->
+    <div id="TabHomework" class="tab-content">
+        <div class="task-card">
+            <div class="section-title">🏠 Choose one</div>
+            <ul style="color:#caddff; margin-left:1.2rem;">
+                <li>Diary entry as Wendy (5-7 sentences)</li>
+                <li>Draw Neverland + 5 sentences</li>
+                <li>5 questions to Peter Pan</li>
+            </ul>
+        </div>
+    </div>
+    <footer>⭐ Click any tab to switch. Audio reads text without highlighting (smooth and fast).</footer>
+</div>
+
+<script>
+    (function() {
+        // ---------- WARM-UP ----------
+        const warmupQuestions = [
+            "How many children can you see?",
+            "What are the children doing?",
+            "Can you see a dog? What is it doing?",
+            "What objects are in the room? (window, clock, fireplace?)",
+            "Who is the woman? What is she doing?",
+            "Is the room big or small? Why?"
+        ];
+        let warmupIdx = 0;
+        const warmupQuestionDiv = document.getElementById('warmupQuestion');
+        const warmupCounterDiv = document.getElementById('warmupCounter');
+        function updateWarmup() {
+            if (warmupIdx < warmupQuestions.length) {
+                warmupQuestionDiv.textContent = warmupQuestions[warmupIdx];
+                warmupCounterDiv.textContent = `Question ${warmupIdx+1} of ${warmupQuestions.length}`;
+            } else {
+                warmupQuestionDiv.textContent = "✨ Great! Now go to Reading.";
+                warmupCounterDiv.textContent = "Completed!";
+            }
+        }
+        document.getElementById('nextWarmupBtn').onclick = () => { if (warmupIdx < warmupQuestions.length) warmupIdx++; updateWarmup(); };
+        document.getElementById('restartWarmup').onclick = () => { warmupIdx = 0; updateWarmup(); };
+        updateWarmup();
+
+        // ---------- READING TEXT (plain text without span wrapping, for performance) ----------
+        const fullTextHTML = `
+            <div class="text-box" id="readingText">
+                <p><strong>Peter Pan (extract – adapted for Pre-Intermediate)</strong></p>
+                <p>All children, except one, grow up. They soon know that they will grow up. Wendy knew this, too. One day when she was two years old she was playing in a garden, and she plucked a flower and ran with it to her mother. Mrs. Darling cried, “Oh, why can’t you remain like this forever!” But Wendy knew that she must grow up.</p>
+                <p>There were three children in the family: Wendy, John, and Michael. The Darlings were poor, and the nurse for the children was a dog, called Nana. She was an excellent nurse. Of course her kennel was in the nursery. The nursery was wide and airy, with a large window, a bright fire with a high fire-guard round it, a big clock, and nursery-rhyme pictures on the walls. There never was a happier family until the coming of Peter Pan. Mrs. Darling first heard of Peter when she was putting her children to bed.</p>
+                <p>One night, Mrs. Darling saw a strange boy outside the window. He was flying! He wore clothes made of leaves and had a mischievous smile. Mrs. Darling screamed, and the boy flew away. But he left something behind – his shadow on the floor. Nana caught the shadow in her mouth and brought it to Mrs. Darling. They decided to keep the shadow in a drawer, waiting for the boy to come back.</p>
+                <p>The next evening, Mr. and Mrs. Darling went to a party. When they returned home, the window of the nursery was open. The children were gone. And on the bed, they found a small letter: “I am Peter Pan. We are going to Neverland. Do not worry.”</p>
+            </div>
+        `;
+
+        let readingContainer = document.getElementById('readingTextContainer');
+        let readingReady = false;
+
+        // Async loading of text (just replace loading indicator with actual content)
+        function loadReadingContent() {
+            if (readingReady) return;
+            readingContainer.innerHTML = fullTextHTML;
+            readingReady = true;
+        }
+
+        // Preload when page loads (in background, without blocking)
+        setTimeout(() => {
+            loadReadingContent(); // start loading in background
+        }, 100);
+
+        // ---------- AUDIO (simple, no highlight) ----------
+        let currentUtterance = null;
+        function getReadingTextContent() {
+            const textDiv = document.getElementById('readingText');
+            if (textDiv) return textDiv.innerText;
+            return "";
+        }
+        function startAudio() {
+            if (currentUtterance) window.speechSynthesis.cancel();
+            // Ensure text is loaded
+            if (!readingReady) {
+                loadReadingContent();
+                setTimeout(() => startAudio(), 100);
+                return;
+            }
+            const fullText = getReadingTextContent();
+            if (!fullText) return;
+            const utterance = new SpeechSynthesisUtterance(fullText);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            utterance.onend = () => { currentUtterance = null; };
+            window.speechSynthesis.speak(utterance);
+            currentUtterance = utterance;
+        }
+        function stopAudio() {
+            if (currentUtterance) {
+                window.speechSynthesis.cancel();
+                currentUtterance = null;
+            }
+        }
+        document.getElementById('playFullAudio').onclick = startAudio;
+        document.getElementById('stopAudioBtn').onclick = stopAudio;
+
+        // ---------- TRUE/FALSE ----------
+        const tfData = [
+            { text: "Wendy knew she would grow up when she was two.", isTrue: true },
+            { text: "The Darling family had four children.", isTrue: false },
+            { text: "Nana was a dog and the children's nurse.", isTrue: true },
+            { text: "The nursery had a small window and no pictures.", isTrue: false },
+            { text: "Mrs. Darling first heard about Peter from a book.", isTrue: false },
+            { text: "Peter Pan left his shadow in the nursery.", isTrue: true },
+            { text: "The children ran away by themselves.", isTrue: false }
+        ];
+        let tfAnswers = new Array(tfData.length).fill(null);
+        function renderTF() {
+            const container = document.getElementById('tfContainer');
+            if (!container) return;
+            container.innerHTML = '';
+            tfData.forEach((item, i) => {
+                const div = document.createElement('div');
+                div.className = 'tf-item';
+                div.innerHTML = `
+                    <div class="tf-text">${i+1}. ${item.text}</div>
+                    <div class="tf-buttons">
+                        <button class="tf-btn" data-idx="${i}" data-val="true">✅ True</button>
+                        <button class="tf-btn" data-idx="${i}" data-val="false">❌ False</button>
+                    </div>
+                    <div class="feedback" id="fb-${i}"></div>
+                `;
+                container.appendChild(div);
+            });
+            attachTFEvents();
+        }
+        function attachTFEvents() {
+            document.querySelectorAll('.tf-btn').forEach(btn => {
+                btn.removeEventListener('click', tfHandler);
+                btn.addEventListener('click', tfHandler);
+            });
+        }
+        function tfHandler(e) {
+            const btn = e.currentTarget;
+            const idx = parseInt(btn.dataset.idx);
+            const selected = btn.dataset.val === 'true';
+            tfAnswers[idx] = selected;
+            updateTFVisual(idx, selected);
+            const fb = document.getElementById(`fb-${idx}`);
+            const isCorrect = (selected === tfData[idx].isTrue);
+            fb.innerHTML = isCorrect ? '✓ Correct!' : `✗ Wrong. Correct: ${tfData[idx].isTrue ? 'True' : 'False'}`;
+            fb.style.color = isCorrect ? '#8effa2' : '#ffaa9a';
+        }
+        function updateTFVisual(idx, selected) {
+            const btns = document.querySelectorAll(`.tf-btn[data-idx="${idx}"]`);
+            btns.forEach(btn => {
+                btn.classList.remove('selected-true', 'selected-false');
+                if ((btn.dataset.val === 'true' && selected) || (btn.dataset.val === 'false' && !selected))
+                    btn.classList.add(selected ? 'selected-true' : 'selected-false');
+            });
+        }
+        const resetTFbtn = document.getElementById('resetTF');
+        if (resetTFbtn) resetTFbtn.onclick = () => { tfAnswers.fill(null); renderTF(); };
+        renderTF();
+
+        // ---------- COMPREHENSION ----------
+        const compQuestions = [
+            "Why did Mrs. Darling wish Wendy could remain a child forever?",
+            "What was unusual about the Darlings' nurse?",
+            "What did Peter Pan leave behind? What did Nana do with it?",
+            "Where did the children go according to the letter?"
+        ];
+        function renderComp() {
+            const container = document.getElementById('compContainer');
+            if (!container) return;
+            container.innerHTML = '';
+            compQuestions.forEach((q, i) => {
+                const div = document.createElement('div');
+                div.className = 'question-item';
+                div.innerHTML = `<div class="tf-text">${i+1}. ${q}</div><textarea class="answer-input" rows="2" placeholder="Your answer..."></textarea>`;
+                container.appendChild(div);
+            });
+        }
+        renderComp();
+
+        // ---------- GRAMMAR ----------
+        const grammarTasks = [
+            { text: "Wendy ________ (play) in the garden when she ________ (see) a flower.", correct: ["was playing", "saw"] },
+            { text: "Mrs. Darling ________ (cry), “Why can’t you remain like this!”", correct: ["cried"] },
+            { text: "The children ________ (be) gone when Mr. and Mrs. Darling ________ (return) home.", correct: ["were", "returned"] },
+            { text: "If Peter ________ (come) back, the children probably ________ (go) to Neverland.", correct: ["comes", "will go"] },
+            { text: "Mrs. Darling ________ (never / see) Peter Pan before that night.", correct: ["has never seen"] },
+            { text: "Peter Pan ________ (fly) because he ________ (be) a magical boy.", correct: ["flies", "is"] }
+        ];
+        function renderGrammar() {
+            const container = document.getElementById('gramContainer');
+            if (!container) return;
+            container.innerHTML = '';
+            grammarTasks.forEach((task, idx) => {
+                const div = document.createElement('div');
+                div.className = 'gram-item';
+                div.innerHTML = `
+                    <div class="gram-text">${idx+1}. ${task.text}</div>
+                    <div><input type="text" class="gram-input" id="gramInp_${idx}" placeholder="answer"></div>
+                    <div class="gram-feedback" id="gramFb_${idx}"></div>
+                `;
+                container.appendChild(div);
+            });
+        }
+        function checkGrammar() {
+            let allOk = true;
+            for (let i = 0; i < grammarTasks.length; i++) {
+                const inp = document.getElementById(`gramInp_${i}`);
+                if (!inp) continue;
+                const user = inp.value.trim().toLowerCase().replace(/[^a-z]/g, '');
+                const correctList = grammarTasks[i].correct.map(c => c.toLowerCase().replace(/[^a-z]/g, ''));
+                const ok = correctList.some(c => user === c);
+                const fbSpan = document.getElementById(`gramFb_${i}`);
+                if (fbSpan) {
+                    if (ok) {
+                        fbSpan.innerHTML = '✓';
+                        fbSpan.style.color = '#8effa2';
+                    } else {
+                        fbSpan.innerHTML = `✗ Expected: ${grammarTasks[i].correct.join(' / ')}`;
+                        fbSpan.style.color = '#ffaa9a';
+                        allOk = false;
+                    }
+                }
+            }
+            const globalFb = document.getElementById('gramGlobalFeedback');
+            if (globalFb) globalFb.innerHTML = allOk ? '🎉 Perfect grammar!' : '⚠️ Some answers are incorrect. Try again.';
+        }
+        renderGrammar();
+        const checkGrammarBtn = document.getElementById('checkGrammarBtn');
+        if (checkGrammarBtn) checkGrammarBtn.onclick = checkGrammar;
+
+        // ---------- TAB SWITCHING (robust, no heavy operations) ----------
+        const allTabs = document.querySelectorAll('.tab-btn');
+        const allContents = document.querySelectorAll('.tab-content');
+        function switchTab(tabId) {
+            const targetContent = document.getElementById(tabId);
+            if (!targetContent) return;
+            allTabs.forEach(btn => {
+                if (btn.getAttribute('data-tab') === tabId) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            allContents.forEach(content => {
+                if (content.id === tabId) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+            // If switching to Reading and text not loaded yet, load it now (but asynchronously)
+            if (tabId === 'tabReading' && !readingReady) {
+                loadReadingContent();
+            }
+        }
+        allTabs.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetTab = btn.getAttribute('data-tab');
+                if (targetTab) switchTab(targetTab);
+            });
+        });
+        // Ensure initial active tab is warmup
+        if (document.getElementById('tabWarmup') && !document.getElementById('tabWarmup').classList.contains('active')) {
+            switchTab('tabWarmup');
+        }
+    })();
+</script>
+</body>
+</html>
